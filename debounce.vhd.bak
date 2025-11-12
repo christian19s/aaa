@@ -1,0 +1,62 @@
+--Debouncer para garantir um sinal estavel
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity Debouncer is
+    generic (
+        CLK_FREQ_MHZ : natural := 50; 
+        DEBOUNCE_TIME_MS : natural := 10
+    );
+    port (
+        CLK        : in  std_logic;
+        RST        : in  std_logic;
+        BUTTON_IN  : in  std_logic;  --Sinal bruto do botão
+        BUTTON_OUT : out std_logic   -- Sinal estável e debounced
+    );
+end entity Debouncer;
+
+architecture RTL of Debouncer is
+    -- Constante do contador para 10ms
+    constant COUNT_MAX : natural := CLK_FREQ_MHZ * DEBOUNCE_TIME_MS * 1000;
+    constant N_BITS    : natural := 19; 
+
+    signal count        : unsigned(N_BITS-1 downto 0) := (others => '0');
+    signal button_sync  : std_logic_vector(1 downto 0) := (others => '0');
+    signal button_state : std_logic := '0';
+begin
+    -- Etapa 1: Sincronização e Metaestabilidade (usando 2 FFs)
+    -- O 'button_sync' é o sinal de entrada mais limpo.
+    process (CLK) is
+    begin
+        if rising_edge(CLK) then
+            button_sync(0) <= BUTTON_IN;
+            button_sync(1) <= button_sync(0);
+        end if;
+    end process;
+
+    -- Contador e  Debounce
+    process (CLK, RST) is
+    begin
+        if RST = '1' then
+            count        <= (others => '0');
+            button_state <= '0';
+        elsif rising_edge(CLK) then
+            if button_sync(1) /= button_state then
+                -- iniciar ou continuar a contage se o sinal mudou
+                if count = COUNT_MAX - 1 then
+                    -- nao mudou atualiza o esado e resetar o contdor
+                    button_state <= button_sync(1);
+                    count        <= (others => '0');
+                else
+                    -- Contar
+                    count <= count + 1;
+                end if;
+            else
+                -- estavel, resetar o contador
+                count <= (others => '0');
+            end if;
+        end if;
+    end process;
+    BUTTON_OUT <= button_state;
+end architecture RTL;

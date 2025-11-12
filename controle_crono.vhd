@@ -1,0 +1,82 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity controle_crono is
+    port (
+        CLK          : in  std_logic;
+        RST          : in  std_logic;
+        START_BTN    : in  std_logic; 
+        STOP_BTN     : in  std_logic;
+        RESET_BTN    : in  std_logic;
+        CLK_1S_EN    : in  std_logic;
+        MIN_UNIT_OUT : out std_logic_vector(3 downto 0); -- M_U
+        SEC_DEC_OUT  : out std_logic_vector(3 downto 0); -- S_D
+        SEC_UNIT_OUT : out std_logic_vector(3 downto 0)  -- S_U
+    );
+end entity controle_crono;
+
+architecture RTL of controle_crono is
+    type state_type is (STATE_STOP, STATE_RUN);
+    signal current_state : state_type := STATE_STOP;
+    signal sec_u : unsigned(3 downto 0) := (others => '0'); -- 0 a 9
+    signal sec_d : unsigned(3 downto 0) := (others => '0'); -- 0 a 5
+    signal min_u : unsigned(3 downto 0) := (others => '0'); -- 0 a 9
+begin
+
+    process (CLK, RST) is
+    begin
+        if RST = '1' or RESET_BTN = '1' then
+            current_state <= STATE_STOP;
+        elsif rising_edge(CLK) then
+            case current_state is
+                when STATE_STOP =>
+                    if START_BTN = '1' then
+                        current_state <= STATE_RUN;
+                    end if;
+                when STATE_RUN =>
+                    if STOP_BTN = '1' then
+                        current_state <= STATE_STOP;
+                    -- Parar a contagem quando chega em 9:59 
+                    elsif (min_u = "1001" and sec_d = "0101" and sec_u = "1001" and CLK_1S_EN = '1') then
+                        current_state <= STATE_STOP;
+                    end if;
+            end case;
+        end if;
+    end process;
+
+    -- Lógica de Contagem BCD
+    process (CLK, RST) is
+    begin
+        if RST = '1' or RESET_BTN = '1' then
+            sec_u <= (others => '0');
+            sec_d <= (others => '0');
+            min_u <= (others => '0');
+        elsif rising_edge(CLK) then
+            if current_state = STATE_RUN and CLK_1S_EN = '1' then
+                -- Contagem de Unidades de Segundo 
+                if sec_u = 9 then
+                    sec_u <= (others => '0');
+                    -- Contagem de Dezenas 
+                    if sec_d = 5 then
+                        sec_d <= (others => '0');
+                        -- Contagem de Unidades de Minuto
+                        if min_u = 9 then
+                            min_u <= (others => '0');
+                        else
+                            min_u <= min_u + 1;
+                        end if;
+                    else
+                        sec_d <= sec_d + 1;
+                    end if;
+                else
+                    sec_u <= sec_u + 1;
+                end if;
+            end if;
+        end if;
+    end process;
+
+    MIN_UNIT_OUT <= std_logic_vector(min_u);
+    SEC_DEC_OUT  <= std_logic_vector(sec_d);
+    SEC_UNIT_OUT <= std_logic_vector(sec_u);
+end architecture RTL;

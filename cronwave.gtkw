@@ -1,0 +1,66 @@
+[*]
+[*] GTKWave Analyzer v3.3.125 (w)1999-2025 BSI
+[*] Wed Nov 12 02:31:39 2025
+[*]
+[dumpfile] "/home/naul/projects/EE/ped/exp6/controle_crono_tb.ghw"
+[dumpfile_mtime] "Wed Nov 12 02:15:39 2025"
+[dumpfile_size] 13154
+[savefile] "/home/naul/projects/EE/ped/exp6/cronwave.gtkw"
+[timestart] 0
+[size] 1918 1000
+[pos] -104 -104
+*-26.400000 297000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.controle_crono_tb.
+[sst_width] 300
+[signals_width] 190
+[sst_expanded] 1
+[sst_vpaned_height] 294
+@c00821
+#{fsm} top.controle_crono_tb.uut.btn_start top.controle_crono_tb.uut.clk_1s_en top.controle_crono_tb.uut.current_state top.controle_crono_tb.uut.reset_btn top.controle_crono_tb.uut.stop_btn
+@28
+top.controle_crono_tb.uut.btn_start
+top.controle_crono_tb.uut.clk_1s_en
+@420
+top.controle_crono_tb.uut.current_state
+@28
+top.controle_crono_tb.uut.reset_btn
+top.controle_crono_tb.uut.stop_btn
+@1401a01
+-group_end
+@28
+top.controle_crono_tb.uut.clk
+@c00022
+[color] 5
+#{cron_bcd_int} top.controle_crono_tb.uut.min_u[3] top.controle_crono_tb.uut.min_u[2] top.controle_crono_tb.uut.min_u[1] top.controle_crono_tb.uut.min_u[0] top.controle_crono_tb.uut.sec_d[3] top.controle_crono_tb.uut.sec_d[2] top.controle_crono_tb.uut.sec_d[1] top.controle_crono_tb.uut.sec_d[0] top.controle_crono_tb.uut.sec_u[3] top.controle_crono_tb.uut.sec_u[2] top.controle_crono_tb.uut.sec_u[1] top.controle_crono_tb.uut.sec_u[0]
+@22
+#{top.controle_crono_tb.uut.min_u[3:0]} top.controle_crono_tb.uut.min_u[3] top.controle_crono_tb.uut.min_u[2] top.controle_crono_tb.uut.min_u[1] top.controle_crono_tb.uut.min_u[0]
+#{top.controle_crono_tb.uut.sec_d[3:0]} top.controle_crono_tb.uut.sec_d[3] top.controle_crono_tb.uut.sec_d[2] top.controle_crono_tb.uut.sec_d[1] top.controle_crono_tb.uut.sec_d[0]
+#{top.controle_crono_tb.uut.sec_u[3:0]} top.controle_crono_tb.uut.sec_u[3] top.controle_crono_tb.uut.sec_u[2] top.controle_crono_tb.uut.sec_u[1] top.controle_crono_tb.uut.sec_u[0]
+@1401200
+-group_end
+@c00022
+#{top.controle_crono_tb.uut.min_unit_out[3:0]} top.controle_crono_tb.uut.min_unit_out[3] top.controle_crono_tb.uut.min_unit_out[2] top.controle_crono_tb.uut.min_unit_out[1] top.controle_crono_tb.uut.min_unit_out[0]
+@28
+top.controle_crono_tb.uut.min_unit_out[3]
+top.controle_crono_tb.uut.min_unit_out[2]
+top.controle_crono_tb.uut.min_unit_out[1]
+top.controle_crono_tb.uut.min_unit_out[0]
+@1401200
+-group_end
+@28
+top.controle_crono_tb.uut.rst
+@c00022
+#{top.controle_crono_tb.min_unit_out_tb[3:0]} top.controle_crono_tb.min_unit_out_tb[3] top.controle_crono_tb.min_unit_out_tb[2] top.controle_crono_tb.min_unit_out_tb[1] top.controle_crono_tb.min_unit_out_tb[0]
+@28
+top.controle_crono_tb.min_unit_out_tb[3]
+top.controle_crono_tb.min_unit_out_tb[2]
+top.controle_crono_tb.min_unit_out_tb[1]
+top.controle_crono_tb.min_unit_out_tb[0]
+@1401200
+-group_end
+@22
+#{top.controle_crono_tb.sec_dec_out_tb[3:0]} top.controle_crono_tb.sec_dec_out_tb[3] top.controle_crono_tb.sec_dec_out_tb[2] top.controle_crono_tb.sec_dec_out_tb[1] top.controle_crono_tb.sec_dec_out_tb[0]
+#{top.controle_crono_tb.sec_unit_out_tb[3:0]} top.controle_crono_tb.sec_unit_out_tb[3] top.controle_crono_tb.sec_unit_out_tb[2] top.controle_crono_tb.sec_unit_out_tb[1] top.controle_crono_tb.sec_unit_out_tb[0]
+[pattern_trace] 1
+[pattern_trace] 0

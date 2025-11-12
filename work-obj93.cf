@@ -1,0 +1,22 @@
+v 4
+file . "cronometro_dig.vhd" "86bafe81c2a57cee2c1634d709e412173ad37182" "20251112021533.048":
+  entity top_level at 1( 0) + 0 on 59;
+  architecture structural of top_level at 22( 785) + 0 on 60;
+file . "controle_crono.vhd" "b834930ab9e4f857a3077c72205f9f8c2d88a48c" "20251112021532.976":
+  entity controle_crono at 2( 73) + 0 on 55;
+  architecture rtl of controle_crono at 20( 635) + 0 on 56;
+file . "clk_div_mux.vhd" "15df2cc512f41dd211d9b6503c368cb651a47944" "20251112021532.923":
+  entity clock_divider_mux at 3( 55) + 0 on 51;
+  architecture rtl of clock_divider_mux at 15( 344) + 0 on 52;
+file . "div_clk_1Hz.vhd" "8e92b7b76467f23c4e7929ee219733f4ad667892" "20251112021532.896":
+  entity clock_divider_1hz at 2( 62) + 0 on 49;
+  architecture rtl of clock_divider_1hz at 14( 318) + 0 on 50;
+file . "decod_bcd_7seg.vhd" "9080be198b4f323d3b908e3bd0841aeb9d144c09" "20251112021532.948":
+  entity bcd_7seg_decoder at 1( 0) + 0 on 53;
+  architecture rtl of bcd_7seg_decoder at 11( 243) + 0 on 54;
+file . "mux.vhd" "59b8aa74b7979bfe46e7c0135d9162223a29aabe" "20251112021533.017":
+  entity mux_driver at 1( 0) + 0 on 57;
+  architecture rtl of mux_driver at 18( 626) + 0 on 58;
+file . "controle_crono_tb.vhd" "309df4adddfb94ca4447ee707c4866971b56745a" "20251112021533.086":
+  entity controle_crono_tb at 4( 111) + 0 on 61;
+  architecture behavioral of controle_crono_tb at 11( 240) + 0 on 62;
